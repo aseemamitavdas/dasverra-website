@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://dasverra.org/</loc>
-    <lastmod>2026-10-10</lastmod>
-  </url>
+  <url><loc>https://dasverra.org/</loc><lastmod>2026-10-10</lastmod></url>
+  <url><loc>https://dasverra.org/about.html</loc><lastmod>2026-10-10</lastmod></url>
+  <url><loc>https://dasverra.org/what-we-supply.html</loc><lastmod>2026-10-10</lastmod></url>
+  <url><loc>https://dasverra.org/how-we-work.html</loc><lastmod>2026-10-10</lastmod></url>
+  <url><loc>https://dasverra.org/capabilities.html</loc><lastmod>2026-10-10</lastmod></url>
+  <url><loc>https://dasverra.org/trade-payment.html</loc><lastmod>2026-10-10</lastmod></url>
+  <url><loc>https://dasverra.org/our-work.html</loc><lastmod>2026-10-10</lastmod></url>
+  <url><loc>https://dasverra.org/cashew-rcn-trade.html</loc><lastmod>2026-10-10</lastmod></url>
+  <url><loc>https://dasverra.org/narikela.html</loc><lastmod>2026-10-10</lastmod></url>
+  <url><loc>https://dasverra.org/contact.html</loc><lastmod>2026-10-10</lastmod></url>
+  <url><loc>https://dasverra.org/register.html</loc><lastmod>2026-10-10</lastmod></url>
+  <url><loc>https://dasverra.org/privacy-policy.html</loc><lastmod>2026-10-10</lastmod></url>
+  <url><loc>https://dasverra.org/terms.html</loc><lastmod>2026-10-10</lastmod></url>
 </urlset>
