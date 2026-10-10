@@ -5,7 +5,7 @@
      formEndpoint: the Google Apps Script web app URL (ends in /exec).
      While it is empty, applications are handed over through WhatsApp instead. */
   const DV = Object.assign({
-    formEndpoint: '',
+    formEndpoint: 'https://script.google.com/macros/s/AKfycbwC3Ujoojotk7NUlajTwKHYYrrBYQBtFevcJ_hS05Hpx2qDvG2w3gnwdXDHpocvsjsDxg/exec',
     whatsapp: '918013906621',
     email: 'aseem.das@dasverra.org'
   }, window.DV_CONFIG || {});
