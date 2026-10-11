@@ -9,6 +9,7 @@
     whatsapp: '918013906621',
     email: 'aseem.das@dasverra.org'
   }, window.DV_CONFIG || {});
+  window.DVCONF = DV; // read by tradeos.js (catalogue, board, tracker)
 
   const ROLE = {
     buyer: { code: 'B', label: 'Buyer' },
@@ -248,6 +249,13 @@
     wa.href = whatsappUrl(summary);
     wa.className = 'btn ' + (sent ? 'dark' : 'solid');
     slot('wa-label').textContent = sent ? 'Also message us on WhatsApp' : 'Send on WhatsApp';
+
+    const trackLink = slot('track');
+    if (trackLink) {
+      trackLink.href = 'track.html?ref=' + encodeURIComponent(data.ref);
+      trackLink.hidden = !sent;
+    }
+    document.dispatchEvent(new CustomEvent('dv:submitted', { detail: { role: data.role, ref: data.ref, sent: sent } }));
 
     $('textarea.summary', result).value = summary;
     slot('summary-wrap').hidden = sent;

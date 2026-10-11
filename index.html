@@ -23,7 +23,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Poppins:wght@400;500;600;700;800&display=swap">
-<link rel="stylesheet" href="style.css?v=033528ec">
+<link rel="stylesheet" href="style.css?v=2f6f64ed">
 </head>
 <body class="page-index">
 <a class="skip" href="#main">Skip to content</a>
@@ -34,8 +34,12 @@
   <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5.5A1.5 1.5 0 0 0 14.5 4h-9A1.5 1.5 0 0 0 4 5.5v9A1.5 1.5 0 0 0 5.5 16H8"/></symbol>
   <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7 3v5.5c0 4.3-2.9 7.9-7 9.5-4.1-1.6-7-5.2-7-9.5V6z"/><path d="M9 12l2.2 2.2L15.5 10"/></symbol>
   <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="M3.5 6.5l8.5 6.5 8.5-6.5"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-list" viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11"/><path d="M4 6h.01M4 12h.01M4 18h.01"/></symbol>
 </svg>
 
+<div class="os-bar"><div class="wrap os-inner"><a class="os-brand" href="trade-os.html">Trade OS <span class="pill">Early access</span></a><ul class="os-links"><li><a href="catalogue.html">Catalogue</a></li><li><a href="trade-board.html" aria-label="Trade Board"><span class="x-long">Trade </span>Board</a></li><li><a href="track.html" aria-label="Track a trade">Track<span class="x-long"> a trade</span></a></li></ul><a class="os-rfq" href="catalogue.html#rfq" data-rfq-link aria-label="My RFQ"><span><span class="x-long">My </span>RFQ</span> <span class="count" data-rfq-count data-n="0">0</span></a></div></div>
 <header class="site-header">
   <div class="wrap nav-inner">
     <a class="brand-lockup" href="./" aria-label="Dasverra Private Limited, home">
@@ -311,10 +315,38 @@
       <div class="work-card"><span class="w-tag pending"><span class="status-dot"></span>In Scoping</span><div class="icon-badge sm"><svg viewBox="0 0 24 24"><path d="M8 4l4 2 4-2 4 3-3 3v10H7V10L4 7z"/></svg></div><h3>Textiles</h3><p>Detail added as requirements confirm.</p></div>
       <a href="our-work.html" class="work-card linked lift"><span class="w-tag open"><span class="status-dot"></span>Open</span><div class="icon-badge sm"><svg viewBox="0 0 24 24"><path d="M3 8l9-5 9 5-9 5-9-5z"/><path d="M3 8v9l9 5 9-5V8"/><line x1="12" y1="13" x2="12" y2="22"/></svg></div><h3>All Categories</h3><p>See the complete list we evaluate.</p><span class="more-link">Our work &rsaquo;</span></a>
     </div>
-    <div class="portal" style="margin-top:clamp(32px,4vw,48px)">
-      <span class="pill">Coming soon</span>
-      <div><h3>Dasverra partner portal</h3><p>Track orders, inspection reports, documents, payment milestones and shipments in one place. Registered partners get early access.</p></div>
-      <a class="btn dark small" href="register.html">Register for early access</a>
+  </div>
+</section>
+
+<section class="band-dark" aria-labelledby="os-title">
+  <div class="wrap">
+    <div class="section-head-centre">
+      <div class="eyebrow-line"><span class="dash"></span><span>Trade OS &middot; Early access</span><span class="dash"></span></div>
+      <h2 id="os-title">Browse, request and track</h2>
+      <p>Pick products from the catalogue, send one RFQ, see what the trade desk is working on and follow your reference stage by stage. No login, and our trade desk runs it for you.</p>
+    </div>
+    <div class="dark-card-grid">
+      <div class="dark-card">
+        <span class="tag">Catalogue &amp; RFQ</span>
+        <h3>Pick products, send one request</h3>
+        <p>Browse the product families we source from India and add them to a single RFQ. The buyer form opens with your list already filled in.</p>
+        <a class="btn outline small" href="catalogue.html">Open the catalogue &rsaquo;</a>
+      </div>
+      <div class="dark-card">
+        <span class="tag">Trade Board</span>
+        <h3>See what is open</h3>
+        <p>Anonymised buyer requirements and supply offers the trade desk is working on. Respond to a listing and we make the introduction.</p>
+        <a class="btn outline small" href="trade-board.html">See the board &rsaquo;</a>
+      </div>
+      <div class="dark-card">
+        <span class="tag">Track</span>
+        <h3>Follow your reference</h3>
+        <p>Enter the reference you received to see which stage your application or trade has reached, and when it last moved.</p>
+        <a class="btn outline small" href="track.html">Track a trade &rsaquo;</a>
+      </div>
+    </div>
+    <div class="btn-row">
+      <a class="btn text" href="trade-os.html" style="color:var(--orange)">How Trade OS works &rsaquo;</a>
     </div>
   </div>
 </section>
@@ -360,6 +392,16 @@
         </ul>
       </div>
       <div class="footer-col">
+        <h4>Trade OS</h4>
+        <ul>
+          <li><a href="trade-os.html">Overview</a></li>
+          <li><a href="catalogue.html">Catalogue</a></li>
+          <li><a href="trade-board.html">Trade Board</a></li>
+          <li><a href="track.html">Track a trade</a></li>
+          <li><a href="catalogue.html#rfq">My RFQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
         <h4>Work With Us</h4>
         <ul>
           <li><a href="register.html#buyer">Submit a Requirement</a></li>
@@ -392,6 +434,7 @@
     </div>
   </div>
 </footer>
-<script src="app.js?v=033528ec" defer></script>
+<script src="app.js?v=2f6f64ed" defer></script>
+<script src="tradeos.js?v=2f6f64ed" defer></script>
 </body>
 </html>
