@@ -1,0 +1,109 @@
+/* Dasverra chat (early access): the chat window on every page. Built on the site's own tokens (style.css). */
+
+:where(.dvc) p{margin:0;max-width:none}
+.dvc *,.dvc *::before,.dvc *::after{box-sizing:border-box}
+.dvc button,.dvc input,.dvc textarea{font-family:var(--font)}
+
+/* ---------- Launcher ---------- */
+.dvc-launch{position:fixed;right:max(16px,env(safe-area-inset-right));bottom:max(16px,env(safe-area-inset-bottom));z-index:75;display:inline-flex;align-items:center;gap:10px;min-height:54px;padding:0 20px 0 18px;border:0;border-radius:99px;background:var(--accent);color:#fff;font:600 .8rem/1 var(--font);letter-spacing:.08em;text-transform:uppercase;cursor:pointer;box-shadow:0 12px 30px rgba(211,50,26,.36),0 2px 6px rgba(29,29,31,.22);transition:background-color .2s ease,transform .2s ease}
+.dvc-launch:hover{background:var(--accent-deep);transform:translateY(-2px)}
+.dvc-launch:focus-visible{outline:2px solid var(--charcoal);outline-offset:3px}
+.dvc-launch .ico{width:22px;height:22px}
+.dvc-badge{position:absolute;top:-7px;right:-4px;min-width:22px;height:22px;padding:0 6px;border:2px solid #fff;border-radius:99px;background:var(--charcoal);color:#fff;font:700 .7rem/18px var(--font);letter-spacing:0;text-align:center;text-transform:none}
+
+/* The catalogue page already has a floating RFQ button in the same corner: it sits just above the chat button. */
+html.dvc-on .rfq-fab{bottom:calc(max(16px,env(safe-area-inset-bottom)) + 66px)}
+html.dvc-open .rfq-fab,html.rfq-open .dvc{visibility:hidden}
+
+/* ---------- Window ---------- */
+.dvc-panel{padding:0;position:fixed;right:max(16px,env(safe-area-inset-right));bottom:calc(max(16px,env(safe-area-inset-bottom)) + 66px);z-index:76;display:flex;flex-direction:column;width:min(384px,calc(100vw - 32px));height:min(660px,calc(100vh - 120px));height:min(660px,calc(100dvh - 120px));background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 24px 60px rgba(29,29,31,.3),0 2px 8px rgba(29,29,31,.1);overflow:hidden;outline:none;animation:dvc-pop .22s ease}
+.dvc-panel::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:var(--grad);z-index:2}
+@keyframes dvc-pop{from{opacity:0;transform:translateY(10px) scale(.98)}to{opacity:1;transform:none}}
+
+.dvc-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:17px 14px 13px 18px;background:var(--charcoal)}
+.dvc .dvc-title{display:block;font-size:1rem;line-height:1.3;font-weight:600;color:#fff}
+.dvc-sub{display:flex;align-items:center;gap:8px;margin-top:2px;font-size:.78rem;line-height:1.3;color:var(--on-dark-soft)}
+.dvc-dot{flex:none;width:9px;height:9px;border-radius:50%;background:#8B8B90}
+.dvc-dot.on{background:#3DDC84;box-shadow:0 0 0 3px rgba(61,220,132,.22)}
+.dvc-close{appearance:none;flex:none;display:grid;place-items:center;width:40px;height:40px;border:1px solid var(--line-dark);border-radius:50%;background:transparent;color:#fff;cursor:pointer}
+.dvc-close:hover{background:rgba(255,255,255,.12)}
+.dvc-close:focus-visible{outline-color:var(--orange)}
+
+.dvc-body{flex:1;min-height:0;display:flex;flex-direction:column;overflow-y:auto;overscroll-behavior:contain;background:#fff}
+.dvc-view-thread{overflow:hidden}
+
+/* ---------- Forms ---------- */
+.dvc-form{display:grid;gap:14px;align-content:start;padding:18px 18px 22px}
+.dvc-intro{font-size:.92rem;line-height:1.55;color:var(--ink-soft)}
+.dvc-field > label{font-size:.84rem}
+.dvc-field input,.dvc-field textarea{min-height:46px;padding:10px 12px;font-size:1rem}
+.dvc-field textarea{min-height:80px}
+.dvc-hint{font-size:.78rem;line-height:1.4;color:var(--muted)}
+.dvc-pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+@media (max-width:400px){.dvc-pair{grid-template-columns:1fr}}
+.dvc-check{display:grid;grid-template-columns:22px minmax(0,1fr);gap:4px 10px;align-items:start;font-size:.84rem;line-height:1.5;color:var(--ink-soft)}
+.dvc-check input{width:20px;height:20px;margin:2px 0 0;accent-color:var(--accent)}
+.dvc-check label{cursor:pointer}
+.dvc-check a{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+.dvc-check .err-msg{grid-column:2}
+.dvc-hp{position:absolute!important;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+.dvc-status{padding:10px 12px;border:1px solid #F4C7C1;border-radius:8px;background:#FDECEA;color:var(--err);font-size:.88rem;font-weight:600;line-height:1.45}
+.dvc-go{width:100%}
+.dvc-alt{justify-self:center}
+
+/* ---------- Waiting, done, contact ---------- */
+.dvc-center{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:32px 24px;text-align:center}
+.dvc-center p{font-size:.94rem;color:var(--ink-soft)}
+.dvc-spinner{width:28px;height:28px;border:3px solid var(--line-strong);border-top-color:var(--accent);border-radius:50%;animation:dvc-spin .8s linear infinite}
+@keyframes dvc-spin{to{transform:rotate(360deg)}}
+.dvc-done h3{font-size:1.15rem}
+.dvc-tick{display:grid;place-items:center;width:56px;height:56px;border:1px solid #B7DCC8;border-radius:50%;background:#EAF6EF;color:var(--ok)}
+.dvc-tick .ico{width:28px;height:28px;stroke-width:2.4}
+.dvc-ref{font-family:var(--mono);font-size:.8rem}
+.dvc-contact{display:grid;gap:14px;align-content:start;padding:24px 18px}
+.dvc-contact h3{font-size:1.1rem}
+.dvc-contact p{font-size:.92rem;line-height:1.55;color:var(--ink-soft)}
+.dvc-actions{display:grid;gap:10px}
+
+/* ---------- Conversation ---------- */
+.dvc-threadwrap{flex:1;min-height:0;display:flex;flex-direction:column}
+.dvc-banner{padding:9px 16px;border-bottom:1px solid var(--tint-2);background:var(--tint);font-size:.8rem;line-height:1.45;color:var(--ink-soft)}
+.dvc-thread{flex:1;min-height:0;display:flex;flex-direction:column;gap:6px;padding:14px 14px 10px;overflow-y:auto;overscroll-behavior:contain;background:#fff}
+.dvc-thread:focus-visible{outline-offset:-3px}
+.dvc-fine{align-self:center;max-width:32ch;margin:2px 0 8px;text-align:center;font-size:.74rem;line-height:1.45;color:var(--muted)}
+.dvc-day{align-self:center;margin:8px 0 2px;font:500 .68rem/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.dvc-system{align-self:center;max-width:92%;margin:6px 0;padding:6px 12px;border:1px solid var(--line);border-radius:14px;background:var(--paper-2);text-align:center;font-size:.76rem;line-height:1.4;color:var(--ink-soft)}
+.dvc-msg{display:flex;flex-direction:column;gap:3px;max-width:86%}
+.dvc-msg.me{align-self:flex-end;align-items:flex-end}
+.dvc-msg.them{align-self:flex-start;align-items:flex-start}
+.dvc-text{padding:9px 13px;border-radius:16px;font-size:.92rem;line-height:1.5;color:var(--ink);white-space:pre-wrap;overflow-wrap:anywhere}
+.dvc-msg.me .dvc-text{border-bottom-right-radius:5px;background:var(--accent);color:#fff}
+.dvc-msg.them .dvc-text{border:1px solid var(--line);border-bottom-left-radius:5px;background:var(--paper-2)}
+.dvc-time{font-size:.7rem;line-height:1.3;color:var(--muted)}
+.dvc-msg.pending .dvc-text{opacity:.72}
+.dvc-msg.failed .dvc-text{border:1px solid var(--err);background:#fff;color:var(--err)}
+.dvc-msg.failed .dvc-time{font-weight:600;color:var(--err)}
+.dvc-link{appearance:none;display:inline;padding:0;border:0;background:none;font:inherit;color:var(--accent);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.dvc-link:hover{color:var(--accent-deep)}
+
+.dvc-compose{display:flex;align-items:flex-end;gap:8px;padding:10px 12px calc(10px + env(safe-area-inset-bottom));border-top:1px solid var(--line);background:#fff}
+.dvc-compose textarea{flex:1;min-width:0;min-height:44px;max-height:120px;padding:10px 14px;border:1px solid var(--line-strong);border-radius:22px;background:#fff;font-size:1rem;line-height:1.4;color:var(--ink);resize:none;overflow-y:auto}
+.dvc-compose textarea::placeholder{color:var(--muted);opacity:.85}
+.dvc-compose textarea:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:var(--accent)}
+.dvc-send{appearance:none;flex:none;display:grid;place-items:center;width:44px;height:44px;border:0;border-radius:50%;background:var(--accent);color:#fff;cursor:pointer;transition:background-color .2s ease}
+.dvc-send:hover{background:var(--accent-deep)}
+.dvc-send .ico{width:20px;height:20px;stroke-width:2.2}
+
+/* ---------- Phones: the chat takes the whole screen ---------- */
+@media (max-width:560px){
+  .dvc-launch{width:56px;min-height:56px;padding:0;justify-content:center}
+  .dvc-launch-text{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+  .dvc-badge{top:-5px;right:-5px}
+  html.dvc-on .rfq-fab{bottom:calc(max(16px,env(safe-area-inset-bottom)) + 72px)}
+  .dvc-panel{top:0;right:0;bottom:0;left:0;width:auto;height:100vh;height:100dvh;border:0;border-radius:0}
+  .dvc-head{padding-top:calc(17px + env(safe-area-inset-top))}
+  .dvc.open .dvc-launch{display:none}
+  html.dvc-open{overflow:hidden}
+}
+
+@media print{.dvc{display:none}}

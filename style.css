@@ -834,6 +834,26 @@ html.rfq-open{overflow:hidden}
 .trk-note b{font-size:.76rem;letter-spacing:.06em;text-transform:uppercase}
 .trk-note p{margin-top:4px;font-size:.94rem;color:var(--ink)}
 .trk-help{font-size:.88rem;max-width:none}
+.trk-tabs{max-width:100%;flex-wrap:wrap}
+/* a shared shipment, inside the Track card */
+.trk-ship{display:grid;gap:12px;padding:16px 18px;background:var(--paper-2);border:1px solid var(--line);border-radius:var(--radius)}
+.trk-ship h3{font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.ship-route{display:flex;flex-wrap:wrap;align-items:center;gap:4px 10px;max-width:none;font-weight:600;font-size:1.02rem;line-height:1.4;color:var(--ink)}
+.ship-route .ico{width:18px;height:18px;color:var(--accent)}
+.ship-route em{font-style:normal;font-family:var(--mono);font-size:.66rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);padding:2px 9px;border:1px solid var(--line-strong);border-radius:99px;background:#fff}
+.ship-bar{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:4px}
+.ship-bar span{height:6px;border-radius:3px;background:var(--line-strong)}
+.ship-bar .done{background:var(--accent)}
+.ship-bar .current{background:var(--grad)}
+.ship-desc{font-size:.9rem;max-width:none}
+.trk-ship .trk-meta{padding-top:12px}
+.ship-docwrap{display:grid;gap:8px}
+.ship-docwrap > b{font-size:.76rem;letter-spacing:.06em;text-transform:uppercase}
+.ship-docs{display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0;list-style:none}
+.ship-docs li{display:inline-flex;align-items:center;gap:7px;padding:4px 11px;border-radius:99px;border:1px solid var(--line-strong);background:#fff;font-size:.8rem;line-height:1.4;color:var(--ink-soft)}
+.ship-docs li b{font-weight:600;color:var(--ink)}
+.ship-docs li.ok{border-color:#B7DCC8;background:#EAF6EF;color:var(--ok)}
+.ship-fine{font-size:.8rem;color:var(--muted);max-width:none}
 .trk-side{position:sticky;top:calc(var(--header-h) + 24px);display:grid;gap:16px}
 @media (max-width:920px){.trk-grid{grid-template-columns:1fr}.trk-side{position:static}}
 @media (max-width:480px){.trk-meta{grid-template-columns:1fr}.board-count{margin-left:0}}

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Track a Trade | Dasverra</title>
-<meta name="description" content="Enter your Dasverra reference to see where your application or trade stands, stage by stage.">
+<meta name="description" content="Enter your Dasverra reference to see where your application or trade stands, stage by stage, and where your cargo is once it is moving.">
 <link rel="canonical" href="https://dasverra.org/track.html">
 <meta name="theme-color" content="#1D1D1F">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -13,7 +13,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Dasverra Private Limited">
 <meta property="og:title" content="Track a Trade | Dasverra">
-<meta property="og:description" content="Enter your Dasverra reference to see where your application or trade stands, stage by stage.">
+<meta property="og:description" content="Enter your Dasverra reference to see where your application or trade stands, stage by stage, and where your cargo is once it is moving.">
 <meta property="og:url" content="https://dasverra.org/track.html">
 <meta property="og:image" content="https://dasverra.org/og-image.png">
 <meta property="og:image:width" content="1200">
@@ -23,7 +23,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Poppins:wght@400;500;600;700;800&display=swap">
-<link rel="stylesheet" href="style.css?v=2f6f64ed">
+<link rel="stylesheet" href="style.css?v=c843da28">
+<link rel="stylesheet" href="chat.css?v=c843da28">
 </head>
 <body class="page-track">
 <a class="skip" href="#main">Skip to content</a>
@@ -68,7 +69,7 @@
   <div class="wrap">
     <div class="eyebrow">Trade OS &middot; Track</div>
     <h1>Where does it stand?</h1>
-    <p>Enter the reference we gave you, such as DV-B-261010-2FH3. You see the current stage and the last update. Names, prices and documents are not shown here.</p>
+    <p>Enter the reference we gave you, such as DV-B-261010-2FH3. You see the current stage and the last update and, once cargo is moving, its route, dates and progress. Names, prices and the documents themselves are never shown here.</p>
   </div>
 </header>
 
@@ -98,6 +99,7 @@
       <div class="trk-tabs" role="group" aria-label="Stage list">
         <button type="button" data-track="application" aria-pressed="true">Application</button>
         <button type="button" data-track="trade" aria-pressed="false">Trade</button>
+        <button type="button" data-track="shipment" aria-pressed="false">Shipping</button>
       </div>
       <ol class="next trk-stages" data-track-list="application">
 <li><span class="n">1</span><div><b>Received</b><span>We have your application and logged it under this reference.</span></div></li>
@@ -118,10 +120,20 @@
 <li><span class="n">9</span><div><b>Shipping</b><span>The cargo is moving under the agreed Incoterm.</span></div></li>
 <li><span class="n">10</span><div><b>Delivery</b><span>Handover, document sharing and commercial closure.</span></div></li>
       </ol>
+      <ol class="next trk-stages" data-track-list="shipment" hidden>
+<li><span class="n">1</span><div><b>Booked</b><span>Space is booked with the carrier and the booking details are confirmed.</span></div></li>
+<li><span class="n">2</span><div><b>Cargo ready</b><span>The cargo is packed, checked and ready to move to the port or airport.</span></div></li>
+<li><span class="n">3</span><div><b>Cleared at origin</b><span>Export clearance is done and the cargo is handed to the carrier.</span></div></li>
+<li><span class="n">4</span><div><b>In transit</b><span>The cargo is on its way. The expected arrival is updated if the schedule changes.</span></div></li>
+<li><span class="n">5</span><div><b>Arrived</b><span>The cargo has reached the destination port or airport.</span></div></li>
+<li><span class="n">6</span><div><b>Cleared at destination</b><span>Import clearance is done and the cargo can be released.</span></div></li>
+<li><span class="n">7</span><div><b>Out for delivery</b><span>The cargo is being moved to the final delivery point.</span></div></li>
+<li><span class="n">8</span><div><b>Delivered</b><span>The cargo has been handed over. Documents are shared as agreed.</span></div></li>
+      </ol>
     </aside>
   </div>
 </section>
-<script type="application/json" id="dv-stages">{"application":[{"code":"A1","label":"Received","desc":"We have your application and logged it under this reference."},{"code":"A2","label":"Under review","desc":"Our trade desk is reviewing your details."},{"code":"A3","label":"Verification","desc":"Company details and references are being checked."},{"code":"A4","label":"Introduction call","desc":"A short call to confirm the requirement, capacity or lanes."},{"code":"A5","label":"Onboarded","desc":"You are on the Dasverra network and considered for live requirements."}],"trade":[{"code":"T1","label":"Requirement","desc":"The requirement is logged with product, specification, quantity and destination."},{"code":"T2","label":"Feasibility","desc":"We are checking supply capability, minimum order quantity, lead time and commercial feasibility."},{"code":"T3","label":"Confirmation","desc":"Samples, specifications and packaging are being aligned with the buyer."},{"code":"T4","label":"Commercial","desc":"Price, Incoterm and payment terms are being agreed."},{"code":"T5","label":"Payment","desc":"The order is confirmed and the agreed payment step is under way."},{"code":"T6","label":"Execution","desc":"Production, packing and specification checks are being tracked."},{"code":"T7","label":"Verification","desc":"Inspection and quality checks are being carried out as agreed."},{"code":"T8","label":"Documentation","desc":"Shipping and export documents are being prepared."},{"code":"T9","label":"Shipping","desc":"The cargo is moving under the agreed Incoterm."},{"code":"T10","label":"Delivery","desc":"Handover, document sharing and commercial closure."}]}</script>
+<script type="application/json" id="dv-stages">{"application":[{"code":"A1","label":"Received","desc":"We have your application and logged it under this reference."},{"code":"A2","label":"Under review","desc":"Our trade desk is reviewing your details."},{"code":"A3","label":"Verification","desc":"Company details and references are being checked."},{"code":"A4","label":"Introduction call","desc":"A short call to confirm the requirement, capacity or lanes."},{"code":"A5","label":"Onboarded","desc":"You are on the Dasverra network and considered for live requirements."}],"trade":[{"code":"T1","label":"Requirement","desc":"The requirement is logged with product, specification, quantity and destination."},{"code":"T2","label":"Feasibility","desc":"We are checking supply capability, minimum order quantity, lead time and commercial feasibility."},{"code":"T3","label":"Confirmation","desc":"Samples, specifications and packaging are being aligned with the buyer."},{"code":"T4","label":"Commercial","desc":"Price, Incoterm and payment terms are being agreed."},{"code":"T5","label":"Payment","desc":"The order is confirmed and the agreed payment step is under way."},{"code":"T6","label":"Execution","desc":"Production, packing and specification checks are being tracked."},{"code":"T7","label":"Verification","desc":"Inspection and quality checks are being carried out as agreed."},{"code":"T8","label":"Documentation","desc":"Shipping and export documents are being prepared."},{"code":"T9","label":"Shipping","desc":"The cargo is moving under the agreed Incoterm."},{"code":"T10","label":"Delivery","desc":"Handover, document sharing and commercial closure."}],"shipment":[{"code":"L1","label":"Booked","desc":"Space is booked with the carrier and the booking details are confirmed."},{"code":"L2","label":"Cargo ready","desc":"The cargo is packed, checked and ready to move to the port or airport."},{"code":"L3","label":"Cleared at origin","desc":"Export clearance is done and the cargo is handed to the carrier."},{"code":"L4","label":"In transit","desc":"The cargo is on its way. The expected arrival is updated if the schedule changes."},{"code":"L5","label":"Arrived","desc":"The cargo has reached the destination port or airport."},{"code":"L6","label":"Cleared at destination","desc":"Import clearance is done and the cargo can be released."},{"code":"L7","label":"Out for delivery","desc":"The cargo is being moved to the final delivery point."},{"code":"L8","label":"Delivered","desc":"The cargo has been handed over. Documents are shared as agreed."}]}</script>
 
 </main>
 
@@ -191,7 +203,9 @@
     </div>
   </div>
 </footer>
-<script src="app.js?v=2f6f64ed" defer></script>
-<script src="tradeos.js?v=2f6f64ed" defer></script>
+<script src="app.js?v=c843da28" defer></script>
+<script src="tradeos.js?v=c843da28" defer></script>
+<script src="chat-api.js?v=c843da28" defer></script>
+<script src="chat.js?v=c843da28" defer></script>
 </body>
 </html>

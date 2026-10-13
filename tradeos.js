@@ -5,7 +5,8 @@
      - RFQ basket (kept in this browser only until the buyer form is submitted)
      - Catalogue search and filters
      - Register-form prefill from the basket or from a Trade Board listing
-     - Trade Board and Track-a-trade, both read from the Google Apps Script endpoint (GET)
+     - Trade Board and Track-a-trade, both read from the Google Apps Script endpoint (GET);
+       Track also draws a shipment (route, dates, progress) when the trade desk shares one
      Nothing here sends data anywhere except the register form (app.js) and the two read-only lookups. */
 
   const CONF = Object.assign({ formEndpoint: '', whatsapp: '918013906621', email: 'aseem.das@dasverra.org' }, window.DVCONF || {});
@@ -692,6 +693,82 @@
       box.appendChild(contactLinks(ref));
       show(box);
     }
+    /* A shipment the trade desk has chosen to share. Everything comes from the endpoint as plain text and is drawn with
+       textContent only. The endpoint never sends the forwarder, costs, booking or BL numbers, so there is nothing to hide here. */
+    const MODES = { sea: 'Sea freight', air: 'Air freight', road: 'Road freight', rail: 'Rail freight' };
+    function shipmentBlock(raw, index, count) {
+      if (!raw || typeof raw !== 'object') return null;
+      const str = (v, n) => (v === undefined || v === null ? '' : String(v).slice(0, n || 200));
+      const total = Math.max(1, Math.min(12, Number(raw.total) || 0));
+      const step = Math.max(0, Math.min(total, Number(raw.step) || 0));
+      if (!step) return null;
+      const title = count > 1 ? 'Shipment ' + (index + 1) + ' of ' + count : 'Shipment';
+      const sec = el('section', 'trk-ship');
+      sec.setAttribute('aria-label', title);
+      sec.appendChild(el('h3', '', title));
+
+      const from = str(raw.from, 80);
+      const to = str(raw.to, 80);
+      const mode = MODES[str(raw.mode, 16).toLowerCase()] || '';
+      if (from || to || mode) {
+        const route = el('p', 'ship-route');
+        if (from || to) {
+          route.appendChild(el('span', '', from || 'Origin to be confirmed'));
+          route.appendChild(icon('i-arrow'));
+          route.appendChild(el('span', '', to || 'Destination to be confirmed'));
+        }
+        if (mode) route.appendChild(el('em', '', mode));
+        sec.appendChild(route);
+      }
+
+      const label = str(raw.label, 60);
+      const line = el('p', 'trk-stage');
+      line.appendChild(el('span', 'trk-count', 'Stage ' + step + ' of ' + total));
+      line.appendChild(el('b', '', label));
+      sec.appendChild(line);
+      const bar = el('div', 'ship-bar');
+      bar.setAttribute('role', 'img');
+      bar.setAttribute('aria-label', 'Shipment progress: stage ' + step + ' of ' + total + (label ? ', ' + label : ''));
+      for (let i = 1; i <= total; i++) bar.appendChild(el('span', i < step ? 'done' : (i === step ? 'current' : '')));
+      sec.appendChild(bar);
+      const list = stages.shipment || [];
+      if (list[step - 1] && list[step - 1].desc) sec.appendChild(el('p', 'ship-desc', list[step - 1].desc));
+
+      const meta = el('dl', 'trk-meta');
+      const add = (k, v) => { if (!v) return; const w = el('div'); w.appendChild(el('dt', '', k)); w.appendChild(el('dd', '', v)); meta.appendChild(w); };
+      add('Departure', fmtDate(raw.etd));
+      add('Expected arrival', fmtDate(raw.eta));
+      add('Vessel and voyage', str(raw.vessel, 80));
+      add('Container or air waybill', str(raw.container, 160));
+      add('Last updated', fmtDate(raw.updated));
+      if (meta.childNodes.length) sec.appendChild(meta);
+
+      if (Array.isArray(raw.docs) && raw.docs.length) {
+        const wrap = el('div', 'ship-docwrap');
+        wrap.appendChild(el('b', '', 'Documents'));
+        const ul = el('ul', 'ship-docs');
+        raw.docs.slice(0, 12).forEach(doc => {
+          if (!doc) return;
+          const status = str(doc.status, 12);
+          const ready = status === 'Ready' || status === 'Sent';
+          const li = el('li', ready ? 'ok' : 'wait');
+          li.appendChild(el('b', '', str(doc.name, 40)));
+          li.appendChild(el('span', '', status));
+          ul.appendChild(li);
+        });
+        wrap.appendChild(ul);
+        wrap.appendChild(el('p', 'ship-fine', 'This shows whether each document is ready. The documents themselves are shared with you directly.'));
+        sec.appendChild(wrap);
+      }
+      if (raw.note) {
+        const note = el('div', 'trk-note');
+        note.appendChild(el('b', '', 'Note on this shipment'));
+        note.appendChild(el('p', '', str(raw.note, 300)));
+        sec.appendChild(note);
+      }
+      return sec;
+    }
+
     function result(d) {
       const box = el('div', 'trk-card');
       const head = el('div', 'trk-head');
@@ -738,6 +815,10 @@
         note.appendChild(el('b', '', 'Note from the trade desk'));
         note.appendChild(el('p', '', String(d.note).slice(0, 600)));
         box.appendChild(note);
+      }
+      if (Array.isArray(d.shipments)) {
+        const ships = d.shipments.slice(0, 10);
+        ships.forEach((raw, i) => { const block = shipmentBlock(raw, i, ships.length); if (block) box.appendChild(block); });
       }
       box.appendChild(contactLinks(d.ref));
       show(box);

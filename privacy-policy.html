@@ -22,7 +22,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Poppins:wght@400;500;600;700;800&display=swap">
-<link rel="stylesheet" href="style.css?v=2f6f64ed">
+<link rel="stylesheet" href="style.css?v=c843da28">
+<link rel="stylesheet" href="chat.css?v=c843da28">
 </head>
 <body class="page-privacy-policy">
 <a class="skip" href="#main">Skip to content</a>
@@ -77,19 +78,22 @@
       <h2>Who we are</h2>
       <p>Dasverra Private Limited ("Dasverra", "we") is an India-based merchant export company with its registered office at 1st Floor, Plot No. 05/3073, Khata No. 592/1295, Cuttack Sadar, Chakradharpur, Banara, District Cuttack, Odisha &ndash; 754006, India. This policy explains how we handle personal data shared through dasverra.org.</p>
       <h2>Information we collect</h2>
-      <p>When you submit a requirement, register as a buyer, supplier, freight forwarder or partner, or contact us directly, we collect the information you provide: name, company, designation, email, phone or WhatsApp number, country, and details of your product, business or trade requirement. Our forms also record the page used and how long the form took to complete, which helps us filter automated spam.</p>
+      <p>When you submit a requirement, register as a buyer, supplier, freight forwarder or partner, or contact us directly, we collect the information you provide: name, company, designation, email, phone or WhatsApp number, country, and details of your product, business or trade requirement. Our forms and chat window also record the page used and how long the form took to complete, which helps us filter automated spam.</p>
       <h2>How we use it</h2>
       <p>Information is used to evaluate and respond to your enquiry, verify businesses we may work with, coordinate sourcing and supply, and communicate with you about a potential or ongoing transaction. We do not sell or rent your information to third parties.</p>
       <h2>Trade OS: catalogue, RFQ basket, Trade Board and tracker</h2>
       <p>The RFQ basket is saved in your browser's local storage so that it survives a page reload. It is not sent to us until you submit the buyer form, and it is cleared after a successful submission. You can empty it at any time from the RFQ panel or by clearing this site's data in your browser.</p>
       <p>The Trade Board shows anonymised buyer requirements and supply offers. We do not publish company names, contact details, prices or documents there. If you respond to a listing, your details are handled like any other form submission.</p>
-      <p>When you look up a reference on the tracker, the reference you type is sent to our Google Apps Script endpoint, which returns only the current stage, a generic title, the date of the last update and any note we chose to share.</p>
+      <p>When you look up a reference on the tracker, the reference you type is sent to our Google Apps Script endpoint, which returns only the current stage, a generic title, the date of the last update and any note we chose to share. For a shipment we choose to share, it also returns the route, dates and progress and, where agreed, the vessel, container number and whether each document is ready. It never returns company names, prices, our freight partner or costs.</p>
+      <h2>Chat and quick enquiries</h2>
+      <p>The chat window on this site lets you write to our trade desk or, when nobody is online, leave a short enquiry. Nothing is sent to us when a page loads: the window contacts our server only after you open it. If you start a chat we receive your name, your email address or WhatsApp number, the messages you write, the name of the page you were on and, only if you leave the box ticked, the products in your RFQ basket. The enquiry form collects the same details, plus the company, country, product and quantity if you add them.</p>
+      <p>A chat stays available to you in the same browser for up to 14 days. For this we keep a private token in your browser's local storage (not a cookie); our Google Sheet keeps only a one-way fingerprint of that token, so no one else can open your conversation. Messages are stored as plain text. Each new chat or enquiry sends an alert email to our team, and our team reads and answers chats on a page that needs a private key. We do not use a third-party chat service. When our desk is offline we may reply to the email address or WhatsApp number you gave. You can ask us at any time to delete a chat or an enquiry.</p>
       <h2>Consent</h2>
       <p>We process these details with your consent, which you give when you submit a form, and we handle personal data in line with India's Digital Personal Data Protection Act, 2023.</p>
       <h2>Where it is stored and who sees it</h2>
-      <p>Form submissions are stored in an access-controlled Google Sheet (Google Drive) used by our team, and email notifications are sent to our team's mailboxes. If you choose to send an application through WhatsApp, WhatsApp's own terms also apply to that message. We share data only with service providers that help us run our business, such as email and cloud storage providers, or when the law requires it.</p>
+      <p>Form submissions, chats and enquiries are stored in an access-controlled Google Sheet (Google Drive) used by our team, and email notifications are sent to our team's mailboxes. If you choose to send an application through WhatsApp, WhatsApp's own terms also apply to that message. We share data only with service providers that help us run our business, such as email and cloud storage providers, or when the law requires it.</p>
       <h2>Data retention</h2>
-      <p>We retain enquiry and transaction-related information for as long as reasonably necessary to service the relationship and meet applicable legal, accounting or reporting requirements.</p>
+      <p>We retain chat, enquiry and transaction-related information for as long as reasonably necessary to service the relationship and meet applicable legal, accounting or reporting requirements.</p>
       <h2>Your rights</h2>
       <p>You can ask us to access, correct or delete your data, or withdraw your consent, by writing to <a href="mailto:aseem.das@dasverra.org">aseem.das@dasverra.org</a>. Withdrawing consent does not affect processing already done.</p>
       <h2>Grievance officer</h2>
@@ -166,7 +170,9 @@
     </div>
   </div>
 </footer>
-<script src="app.js?v=2f6f64ed" defer></script>
-<script src="tradeos.js?v=2f6f64ed" defer></script>
+<script src="app.js?v=c843da28" defer></script>
+<script src="tradeos.js?v=c843da28" defer></script>
+<script src="chat-api.js?v=c843da28" defer></script>
+<script src="chat.js?v=c843da28" defer></script>
 </body>
 </html>
