@@ -65,6 +65,20 @@ html.dvc-open .rfq-fab,html.rfq-open .dvc{visibility:hidden}
 .dvc-contact p{font-size:.92rem;line-height:1.55;color:var(--ink-soft)}
 .dvc-actions{display:grid;gap:10px}
 
+/* ---------- Register shortcut (Buyer, Supplier, Forwarder, Partner) ---------- */
+.dvc-reg{display:grid;gap:8px;padding:12px 14px;border:1px solid var(--tint-2);border-radius:12px;background:var(--tint)}
+.dvc-reg-t{font-size:.8rem;font-weight:600;line-height:1.3;color:var(--ink)}
+.dvc-reg-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.dvc-reg-a{display:flex;align-items:center;justify-content:center;min-height:36px;padding:0 4px;border:1px solid var(--line-strong);border-radius:99px;background:#fff;font-size:.78rem;font-weight:600;line-height:1;white-space:nowrap;color:var(--ink);text-decoration:none;transition:border-color .2s ease,color .2s ease}
+.dvc-reg-a:hover{border-color:var(--accent);color:var(--accent)}
+.dvc-reg-a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.dvc-center .dvc-reg,.dvc-contact .dvc-reg{width:100%;margin-top:6px}
+.dvc-center .dvc-reg{max-width:340px;text-align:center}
+@media (max-width:400px){
+  .dvc-reg-row{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .dvc-reg-a{min-height:40px;font-size:.84rem}
+}
+
 /* ---------- Conversation ---------- */
 .dvc-threadwrap{flex:1;min-height:0;display:flex;flex-direction:column}
 .dvc-banner{padding:9px 16px;border-bottom:1px solid var(--tint-2);background:var(--tint);font-size:.8rem;line-height:1.45;color:var(--ink-soft)}

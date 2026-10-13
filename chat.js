@@ -422,12 +422,32 @@
     Object.keys(map).forEach(k => { state.draft[k] = map[k].control.value; });
   }
 
+  /* ----- register shortcut: the four ways to join, one tap each. The forms live on register.html; the page opens the right tab from the #role in the link.
+     Nothing about the visitor travels in the link. The window closes first, so the form is not hidden behind it. ----- */
+  const REG_ROLES = [['buyer', 'Buyer'], ['supplier', 'Supplier'], ['forwarder', 'Forwarder'], ['partner', 'Partner']];
+  function registerStrip(lead) {
+    const wrap = el('div', 'dvc-reg');
+    wrap.setAttribute('role', 'group');
+    wrap.setAttribute('aria-label', 'Register with Dasverra');
+    wrap.appendChild(el('span', 'dvc-reg-t', lead || 'New to Dasverra? Register as:'));
+    const row = el('span', 'dvc-reg-row');
+    REG_ROLES.forEach(r => {
+      const a = el('a', 'dvc-reg-a', r[1]);
+      a.href = 'register.html#' + r[0];
+      a.addEventListener('click', () => { close(); });
+      row.appendChild(a);
+    });
+    wrap.appendChild(row);
+    return wrap;
+  }
+
   /* ----- start a chat ----- */
   function renderStart(focus) {
     state.shownAt = Date.now();
     const form = el('form', 'dvc-form');
     form.noValidate = true;
     form.appendChild(el('p', 'dvc-intro', 'Ask about a product, a price or a shipment. Our trade desk is online and answers here.'));
+    form.appendChild(registerStrip());
     const f = {
       name: field('dvc-name', 'Your name', 'input', { autocomplete: 'name', maxlength: '60', required: '' }),
       contact: field('dvc-contact', 'Email or WhatsApp number', 'input', { autocomplete: 'email', maxlength: '80', required: '', inputmode: 'email' }, 'So we can reach you if you leave the page.'),
@@ -833,6 +853,7 @@
       ? 'Send us your enquiry and our trade desk will reply by email or WhatsApp.'
       : 'Our trade desk is offline right now. Leave your enquiry and we will reply by email or WhatsApp.';
     form.appendChild(el('p', 'dvc-intro', (state.chatNote ? state.chatNote + ' ' : '') + offlineIntro));
+    form.appendChild(registerStrip());
     const f = {
       name: field('dvc-e-name', 'Your name', 'input', { autocomplete: 'name', maxlength: '80', required: '' }),
       contact: field('dvc-e-contact', 'Email or WhatsApp number', 'input', { autocomplete: 'email', maxlength: '100', required: '', inputmode: 'email' }),
@@ -1005,6 +1026,7 @@
       render(true);
     });
     box.appendChild(again);
+    box.appendChild(registerStrip('Want to work with us? Register as:'));
     body.appendChild(box);
   }
 
@@ -1055,6 +1077,7 @@
       retry.addEventListener('click', () => { state.view = 'boot'; boot(); });
       box.appendChild(retry);
     }
+    box.appendChild(registerStrip());
     body.appendChild(box);
   }
 
