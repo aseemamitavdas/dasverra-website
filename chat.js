@@ -531,7 +531,7 @@
     const parts = API.splitMessage(d.message, MAX_MESSAGE, room);
     const first = parts.shift();
     return API.call({
-      action: 'chat_start', n: d.name, c: d.contact, co: d.country, pg: pageName(), b: d.basket, m: first, cs: '1',
+      action: 'chat_start', n: d.name, ct: d.contact, co: d.country, pg: pageName(), b: d.basket, m: first, cs: '1',
       mid: API.uid('s'), el: Math.round((Date.now() - state.shownAt) / 1000), hp: d.hp
     }, 12000).then(res => {
       if (!res || res.ok !== true) {
